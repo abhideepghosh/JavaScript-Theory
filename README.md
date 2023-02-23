@@ -656,8 +656,8 @@ TDZ: Temporal Dead Zone is the period of time during which the let and const dec
 
 
 
-Promise Working
-//Making a new promise(it recieves a function with 2 arguments) : syntax is given below
+*Promise Working
+// 1.) Making a new promise (it recieves a function with 2 arguments) : syntax is given below
 const p = new Promise(function(resolve,reject){
     let a = 1+1; // what promise does or fetches i.e definition functionality defined here
 
@@ -669,12 +669,13 @@ const p = new Promise(function(resolve,reject){
     )
 })
 
-// Using promise => p has a callback function in then & catch, then recieves resolve response as argument & catch recieves reject in it's callback argument
+// 2.) Using promise => p has a callback function in then & catch, then recieves resolve response as argument & catch recieves reject in it's callback argument
 p.then((message)=>{
     console.log("we are in then which return the resolve response as : ", message)
 }).catch((message)=>{
     console.log("we are in catch which returns the reject response as :", message)
 })
+// *** .then() method returns a promise whose resolve value is what we return in current .then(), so now we can chain promises with .then()
 
 
 Running multiple promises at once => Promise.all (messages contains responses of all promises)
