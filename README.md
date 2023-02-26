@@ -652,3 +652,81 @@ Promise: An object that is used as a placeholder for the future result of an asy
 
 
 TDZ: Temporal Dead Zone is the period of time during which the let and const declarations cannot be accessed. Temporal Dead Zone starts when the code execution enters the block which contains the let or const declaration and continues until the declaration has executed.
+
+
+
+
+## Promise Working
+**1.) Making a new promise (it recieves a function with 2 arguments) : syntax is given below.**
+```
+const p = new Promise(function(resolve,reject){
+    let a = 1+1;   what promise does or fetches i.e definition functionality defined here
+    if(a==2){
+        resolve("success")  pass anything in resolve eg. a message in this case
+    }
+    else(
+        reject("failed")    pass anything in reject eg. a message in this case
+    )
+})
+```
+
+**2.) Using promise => p has a callback function in then & catch, then recieves resolve response as argument & catch recieves reject in it's callback argument.**
+```
+p.then((message)=>{
+    console.log("we are in then which return the resolve response as : ", message)
+}).catch((message)=>{
+    console.log("we are in catch which returns the reject response as :", message)
+})
+```
+**.then() method returns a promise whose resolve value is what we return in current .then(), so now we can chain promises with .then()**
+***Example of promise chaining***
+
+```
+const firstPromiseReturner = function(){
+    return new Promise(function(resolve,reject){
+        resolve("My cat is named ");
+        reject("error in P1");
+    })
+}
+const secondPromiseReturner = function(datafromfirstpromise){
+    return new Promise(function(resolve,reject){
+        resolve(datafromfirstpromise + "TOM");
+        reject("error in P2");
+    })
+}
+
+
+firstPromiseReturner().then((resolveValue)=>{
+    return secondPromiseReturner(resolveValue);
+}).then((resolveValue)=>{
+    console.log(resolveValue);
+})
+```
+
+
+**Running multiple promises at once => Promise.all (messages contains responses of all promises)**
+```
+Promise.all([ promise1, promise2, promise3 ]).then((messages)=>{    .all takes array of promises as an argument,
+console.log(messages)})                                              .then has a callback function that takes messages array as an argumrnt which has promise responses
+```
+
+**Running multiple promises at once => Promise.race (message is first promise that runs)**
+```
+Promise.all([ promise1, promise2, promise3 ]).then((messages)=>{   .all takes array of promises as an argument,
+console.log(messages)})                                             .then has a callback function that takes message as an argumrnt of the first promise to respond
+```
+
+```
+async function doWork(){
+try{
+    const response = await makeRequest('Facebook')
+    console.log('Response Received')
+    const processedResponse = await processRequest(response)
+    console.log('processedResponse)
+    }
+catch(err){
+    console.log(err)}
+}
+doWork()
+
+```
