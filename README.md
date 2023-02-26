@@ -708,3 +708,18 @@ console.log(messages)})                                              .then has a
 **Running multiple promises at once => Promise.race (message is first promise that runs)**
 ```Promise.all([ promise1, promise2, promise3 ]).then((messages)=>{   .all takes array of promises as an argument,
 console.log(messages)})                                             .then has a callback function that takes message as an argumrnt of the first promise to respond```
+
+```
+async function doWork(){
+try{
+    const response = await makeRequest('Facebook')
+    console.log('Response Received')
+
+    const processedResponse = await processRequest(response)
+    console.log('processedResponse)
+    }
+catch(err){
+    console.log(err)}
+}
+doWork()
+```
