@@ -714,7 +714,6 @@ async function doWork(){
 try{
     const response = await makeRequest('Facebook')
     console.log('Response Received')
-
     const processedResponse = await processRequest(response)
     console.log('processedResponse)
     }
@@ -722,4 +721,5 @@ catch(err){
     console.log(err)}
 }
 doWork()
+
 ```
